@@ -22,6 +22,8 @@
       { "allowWholeFile": true }
     ],
     "eslint-comments/no-unused-disable": "error",
+    "functional/no-return-void": "off",
+    "functional/no-let": ["off", { "allowLocalMutation": true }],
     "import/order": [
       "error",
       { "newlines-between": "always", "alphabetize": { "order": "asc" } }
