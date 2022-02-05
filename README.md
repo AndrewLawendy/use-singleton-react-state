@@ -45,9 +45,7 @@ What you need here is to be able to reset the filters from the header component 
 
 ## How to use
 
-There is 2 ways of using the singleton state in react
-
-1. Singleton reference (Accept reinitialization)
+Say you have your custom hook `useFilers.ts`, basically you use it in the `ListFilter.tsx` and want to manipulate it as well from `Header.tsx`
 
 ```javascript
 // useFilters.ts
@@ -69,46 +67,32 @@ export default createSingletonStateHook<typeof useFilters, true>(useFilters);
 export { filtersSingletonState, updateSingletonFilters };
 ```
 
+```javascript
+// ListFilter.tsx
+...
+const [filters, updateFilters] = useFilters({ page: 1 });
+...
+```
+
+```jsx
+// Header.tsx
+import { updateSingletonFilters } from "hooks/useFilters"
+
+const Header = () => {
+  ...
+
+  <button onClick={() => updateSingletonFilters({ page: 1 })}>Reset Filter</button>
+  ...
+}
+```
+
 With this implementation `filtersSingletonState` will change with each file calling `useFilters`.
 
 That means that `updateSingletonFilters` can be called from within other components to manipulate the state.
 
-2. Singleton value (Doesn't accept reinitialization which is the **_default_**)
-
-```javascript
-// useFilters.ts
-import SingletonReactState from "use-singleton-react-state";
-
-const {
-  createSingletonStateHook,
-  updateSingletonState: updateSingletonFilters,
-  singletonState: filtersSingletonState,
-} = SingletonReactState();
-
-function useFilters<T>(
-  initialValue: Partial<T>
-): [T, (newFilters: Partial<T>) => void] {
-  ...
-}
-
-export default createSingletonStateHook<typeof useFilters>(useFilters);
-export { filtersSingletonState, updateSingletonFilters };
-```
-
-With this implementation `filtersSingletonState` will remain with each file calling `useFilters` unless the setter was called.
-
-That means that `updateSingletonFilters` is no longer needed and the following is code is enough as the initial state is not altered.
-
-```javascript
-const [, updateFilters] = useFilters();
-
-updateFilters({ page: 1 });
-```
-
 ## Api for `createSingletonStateHook`
 
-| Param              | Type     | Description                                                                                                                                                  |
-| ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `<T>`              | Type     | The `typeof` your custom hook                                                                                                                                |
-| hooks              | Argument | The custom hook                                                                                                                                              |
-| enableReinitialize | Argument | If the singleton should accept to be reinitialized on each use or keep the main initialization and only be altered by the update state. Default is **false** |
+| Param | Type     | Description                   |
+| ----- | -------- | ----------------------------- |
+| `<T>` | Type     | The `typeof` your custom hook |
+| hooks | Argument | The custom hook               |

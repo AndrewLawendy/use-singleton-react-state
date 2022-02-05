@@ -7,7 +7,7 @@ function SingletonState() {
     singletonState: unknown,
     setSingletonState: (value: unknown) => void;
 
-  const useEditableSingletonStateHook = (
+  const useSingletonStateHook = (
     initialValue: unknown
   ): readonly [unknown, (value: unknown) => void] => {
     const [state, setState, ...rest] = (singletonCustomHook as CustomHookType)(
@@ -19,36 +19,16 @@ function SingletonState() {
     return [singletonState, setSingletonState, ...rest];
   };
 
-  const useSingletonStateHook = (
-    initialValue: unknown
-  ): readonly [unknown, (value: unknown) => void] => {
-    const [state, setState, ...rest] = (singletonCustomHook as CustomHookType)(
-      initialValue
-    );
-
-    if (setSingletonState === undefined) {
-      singletonState = state;
-      setSingletonState = setState;
-    }
-
-    return [singletonState, setSingletonState, ...rest];
-  };
-
   const updateSingletonState = (newValue: unknown) => {
     setSingletonState?.(newValue);
   };
 
   const createSingletonStateHook = <Hook = CustomHookType>(
-    customHook: Hook,
-    enableReinitialize = false
+    customHook: Hook
   ): Hook => {
     singletonCustomHook = customHook;
 
-    const useState = enableReinitialize
-      ? useEditableSingletonStateHook
-      : useSingletonStateHook;
-
-    return useState as unknown as Hook;
+    return useSingletonStateHook as unknown as Hook;
   };
 
   return {
