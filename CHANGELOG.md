@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/AndrewLawendy/use-singleton-react-state/compare/v1.1.0...v1.1.2) (2022-02-05)
+
+### Bug Fixes
+
+- **exports:** :bug: expose the export default ([05b64d9](https://github.com/AndrewLawendy/use-singleton-react-state/commit/05b64d9815b83d73ff35a3c3c281f530a9603ca2))
+
 ## 1.1.0 (2022-02-05)
 
 ### Features
