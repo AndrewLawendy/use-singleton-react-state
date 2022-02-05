@@ -7,7 +7,16 @@
   "module": "build/module/index.js",
   "repository": "https://github.com/AndrewLawendy/use-singleton-react-state",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "react",
+    "react-state",
+    "singleton",
+    "singleton-state",
+    "use-state",
+    "use-state-singleton",
+    "use-singleton-state",
+    "use-singleton-react-state"
+  ],
   "scripts": {
     "build": "rm -rf build/ && run-p build:*",
     "build:main": "tsc -p tsconfig.json",
