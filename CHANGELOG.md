@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/AndrewLawendy/use-singleton-react-state/compare/v1.1.2...v1.2.0) (2022-02-05)
+
+### Features
+
+- **editable:** :fire: remove non editable singleton for now ([16b4828](https://github.com/AndrewLawendy/use-singleton-react-state/commit/16b4828c9038a2786b35423060582407e16e6a41))
+
 ### [1.1.2](https://github.com/AndrewLawendy/use-singleton-react-state/compare/v1.1.0...v1.1.2) (2022-02-05)
 
 ### Bug Fixes
