@@ -2,7 +2,7 @@ type CustomHookType = <T, U = T>(
   initialValue: T
 ) => readonly [T, (newValue: U) => void];
 
-const SingletonState = function () {
+function SingletonState() {
   let singletonCustomHook: unknown,
     singletonState: unknown,
     setSingletonState: (value: unknown) => void;
@@ -56,6 +56,6 @@ const SingletonState = function () {
     singletonState,
     updateSingletonState,
   };
-};
+}
 
 export default SingletonState;
